@@ -72,7 +72,7 @@ final class GeneralCollectionViewCell: UICollectionViewCell {
         
         blackView.snp.makeConstraints { make in
             make.height.equalTo(50)
-            make.leading.trailing.equalToSuperview()
+            make.bottom.leading.trailing.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in

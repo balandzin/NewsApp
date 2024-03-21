@@ -19,10 +19,13 @@ final class GeneralViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        //layout.scrollDirection = .horizontal
         
         let width = (view.frame.width - 15) / 2
         
-        layout.itemSize = CGSize(width: width, height: 50)
+        layout.itemSize = CGSize(width: width, height: width)
         let collectionView = UICollectionView(
             frame: CGRect(
                 x: 0,
@@ -67,7 +70,8 @@ final class GeneralViewController: UIViewController {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(5)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
@@ -92,5 +96,8 @@ extension GeneralViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension GeneralViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let newsVC = NewsViewController()
+        navigationController?.pushViewController(newsVC, animated: true)
+    }
 }
