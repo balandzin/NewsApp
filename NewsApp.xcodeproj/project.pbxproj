@@ -8,18 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		D3C14E482BACA6BE00C65A91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E472BACA6BE00C65A91 /* AppDelegate.swift */; };
-		D3C14E4C2BACA6BE00C65A91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E4B2BACA6BE00C65A91 /* ViewController.swift */; };
+		D3C14E4C2BACA6BE00C65A91 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E4B2BACA6BE00C65A91 /* GeneralViewController.swift */; };
 		D3C14E512BACA6CA00C65A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3C14E502BACA6CA00C65A91 /* Assets.xcassets */; };
 		D3C14E542BACA6CA00C65A91 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D3C14E532BACA6CA00C65A91 /* Base */; };
+		D3C14E5C2BACAA5500C65A91 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E5B2BACAA5500C65A91 /* TabBarController.swift */; };
+		D3C14E5E2BACAB5000C65A91 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E5D2BACAB5000C65A91 /* BusinessViewController.swift */; };
+		D3C14E602BACAB7E00C65A91 /* TechnologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E5F2BACAB7E00C65A91 /* TechnologyViewController.swift */; };
+		D3C14E632BACC4C800C65A91 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D3C14E622BACC4C800C65A91 /* SnapKit */; };
+		D3C14E692BACC7AD00C65A91 /* GeneralCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E682BACC7AD00C65A91 /* GeneralCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D3C14E442BACA6BE00C65A91 /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C14E472BACA6BE00C65A91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3C14E4B2BACA6BE00C65A91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D3C14E4B2BACA6BE00C65A91 /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		D3C14E502BACA6CA00C65A91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3C14E532BACA6CA00C65A91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3C14E552BACA6CA00C65A91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3C14E5B2BACAA5500C65A91 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D3C14E5D2BACAB5000C65A91 /* BusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
+		D3C14E5F2BACAB7E00C65A91 /* TechnologyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnologyViewController.swift; sourceTree = "<group>"; };
+		D3C14E682BACC7AD00C65A91 /* GeneralCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3C14E632BACC4C800C65A91 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,12 +63,48 @@
 			isa = PBXGroup;
 			children = (
 				D3C14E472BACA6BE00C65A91 /* AppDelegate.swift */,
-				D3C14E4B2BACA6BE00C65A91 /* ViewController.swift */,
+				D3C14E5B2BACAA5500C65A91 /* TabBarController.swift */,
+				D3C14E642BACC75B00C65A91 /* General */,
+				D3C14E652BACC76400C65A91 /* Business */,
+				D3C14E662BACC77000C65A91 /* Technology */,
 				D3C14E502BACA6CA00C65A91 /* Assets.xcassets */,
 				D3C14E522BACA6CA00C65A91 /* LaunchScreen.storyboard */,
 				D3C14E552BACA6CA00C65A91 /* Info.plist */,
 			);
 			path = NewsApp;
+			sourceTree = "<group>";
+		};
+		D3C14E642BACC75B00C65A91 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				D3C14E672BACC79400C65A91 /* View */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		D3C14E652BACC76400C65A91 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				D3C14E5D2BACAB5000C65A91 /* BusinessViewController.swift */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		D3C14E662BACC77000C65A91 /* Technology */ = {
+			isa = PBXGroup;
+			children = (
+				D3C14E5F2BACAB7E00C65A91 /* TechnologyViewController.swift */,
+			);
+			path = Technology;
+			sourceTree = "<group>";
+		};
+		D3C14E672BACC79400C65A91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3C14E4B2BACA6BE00C65A91 /* GeneralViewController.swift */,
+				D3C14E682BACC7AD00C65A91 /* GeneralCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +123,9 @@
 			dependencies = (
 			);
 			name = NewsApp;
+			packageProductDependencies = (
+				D3C14E622BACC4C800C65A91 /* SnapKit */,
+			);
 			productName = NewsApp;
 			productReference = D3C14E442BACA6BE00C65A91 /* NewsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -105,6 +154,9 @@
 				Base,
 			);
 			mainGroup = D3C14E3B2BACA6BE00C65A91;
+			packageReferences = (
+				D3C14E612BACC4C800C65A91 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = D3C14E452BACA6BE00C65A91 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -131,7 +183,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3C14E4C2BACA6BE00C65A91 /* ViewController.swift in Sources */,
+				D3C14E602BACAB7E00C65A91 /* TechnologyViewController.swift in Sources */,
+				D3C14E692BACC7AD00C65A91 /* GeneralCollectionViewCell.swift in Sources */,
+				D3C14E5C2BACAA5500C65A91 /* TabBarController.swift in Sources */,
+				D3C14E4C2BACA6BE00C65A91 /* GeneralViewController.swift in Sources */,
+				D3C14E5E2BACAB5000C65A91 /* BusinessViewController.swift in Sources */,
 				D3C14E482BACA6BE00C65A91 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +407,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D3C14E612BACC4C800C65A91 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D3C14E622BACC4C800C65A91 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3C14E612BACC4C800C65A91 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D3C14E3C2BACA6BE00C65A91 /* Project object */;
 }
