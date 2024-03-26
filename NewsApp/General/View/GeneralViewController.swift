@@ -49,9 +49,7 @@ final class GeneralViewController: UIViewController {
         
         setupUI()
     }
-    
-    // MARK: - Methods
-    
+ 
     // MARK: - Private Methods
     private func setupUI() {
         view.backgroundColor = .white
@@ -76,7 +74,6 @@ final class GeneralViewController: UIViewController {
     }
 }
 
-
 // MARK: - UICollectionViewDataSource
 extension GeneralViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,7 +89,6 @@ extension GeneralViewController: UICollectionViewDataSource {
         return cell
     }
 }
-
 
 // MARK: - UICollectionViewDelegate
 extension GeneralViewController: UICollectionViewDelegate {

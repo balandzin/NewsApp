@@ -17,6 +17,7 @@
 		D3C14E692BACC7AD00C65A91 /* GeneralCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E682BACC7AD00C65A91 /* GeneralCollectionViewCell.swift */; };
 		D3C14E6B2BACD0C900C65A91 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E6A2BACD0C900C65A91 /* NewsViewController.swift */; };
 		D3C14E6F2BB3405100C65A91 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D3C14E6E2BB3405100C65A91 /* SnapKit */; };
+		D3C14E712BB345B100C65A91 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E702BB345B100C65A91 /* DetailsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		D3C14E5F2BACAB7E00C65A91 /* TechnologyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnologyViewController.swift; sourceTree = "<group>"; };
 		D3C14E682BACC7AD00C65A91 /* GeneralCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3C14E6A2BACD0C900C65A91 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		D3C14E702BB345B100C65A91 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				D3C14E5D2BACAB5000C65A91 /* BusinessViewController.swift */,
+				D3C14E702BB345B100C65A91 /* DetailsCollectionViewCell.swift */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				D3C14E6B2BACD0C900C65A91 /* NewsViewController.swift in Sources */,
 				D3C14E5E2BACAB5000C65A91 /* BusinessViewController.swift in Sources */,
 				D3C14E482BACA6BE00C65A91 /* AppDelegate.swift in Sources */,
+				D3C14E712BB345B100C65A91 /* DetailsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
