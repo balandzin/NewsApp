@@ -69,6 +69,7 @@
 				D3C14E642BACC75B00C65A91 /* General */,
 				D3C14E652BACC76400C65A91 /* Business */,
 				D3C14E662BACC77000C65A91 /* Technology */,
+				D3C14E6C2BB336AD00C65A91 /* News */,
 				D3C14E502BACA6CA00C65A91 /* Assets.xcassets */,
 				D3C14E522BACA6CA00C65A91 /* LaunchScreen.storyboard */,
 				D3C14E552BACA6CA00C65A91 /* Info.plist */,
@@ -104,10 +105,17 @@
 			isa = PBXGroup;
 			children = (
 				D3C14E4B2BACA6BE00C65A91 /* GeneralViewController.swift */,
-				D3C14E6A2BACD0C900C65A91 /* NewsViewController.swift */,
 				D3C14E682BACC7AD00C65A91 /* GeneralCollectionViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D3C14E6C2BB336AD00C65A91 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D3C14E6A2BACD0C900C65A91 /* NewsViewController.swift */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
