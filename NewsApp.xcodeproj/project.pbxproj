@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D32FF7212BB43B0400A1461C /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7202BB43B0400A1461C /* GeneralViewModel.swift */; };
+		D32FF7242BB4412C00A1461C /* NewsRespponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7232BB4412C00A1461C /* NewsRespponseObject.swift */; };
+		D32FF7262BB441EF00A1461C /* ArticleResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7252BB441EF00A1461C /* ArticleResponseObject.swift */; };
+		D32FF7292BB4450A00A1461C /* ArticleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7282BB4450A00A1461C /* ArticleCellViewModel.swift */; };
 		D3C14E482BACA6BE00C65A91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E472BACA6BE00C65A91 /* AppDelegate.swift */; };
 		D3C14E4C2BACA6BE00C65A91 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E4B2BACA6BE00C65A91 /* GeneralViewController.swift */; };
 		D3C14E512BACA6CA00C65A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3C14E502BACA6CA00C65A91 /* Assets.xcassets */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D32FF7202BB43B0400A1461C /* GeneralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
+		D32FF7232BB4412C00A1461C /* NewsRespponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRespponseObject.swift; sourceTree = "<group>"; };
+		D32FF7252BB441EF00A1461C /* ArticleResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleResponseObject.swift; sourceTree = "<group>"; };
+		D32FF7282BB4450A00A1461C /* ArticleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCellViewModel.swift; sourceTree = "<group>"; };
 		D3C14E442BACA6BE00C65A91 /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C14E472BACA6BE00C65A91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3C14E4B2BACA6BE00C65A91 /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +55,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D32FF7222BB43B0D00A1461C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D32FF7202BB43B0400A1461C /* GeneralViewModel.swift */,
+				D32FF7282BB4450A00A1461C /* ArticleCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D32FF7272BB4426A00A1461C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D32FF7232BB4412C00A1461C /* NewsRespponseObject.swift */,
+				D32FF7252BB441EF00A1461C /* ArticleResponseObject.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D3C14E3B2BACA6BE00C65A91 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				D3C14E672BACC79400C65A91 /* View */,
+				D32FF7222BB43B0D00A1461C /* ViewModel */,
+				D32FF7272BB4426A00A1461C /* Model */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -197,12 +225,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D32FF7262BB441EF00A1461C /* ArticleResponseObject.swift in Sources */,
 				D3C14E602BACAB7E00C65A91 /* TechnologyViewController.swift in Sources */,
 				D3C14E692BACC7AD00C65A91 /* GeneralCollectionViewCell.swift in Sources */,
 				D3C14E5C2BACAA5500C65A91 /* TabBarController.swift in Sources */,
 				D3C14E4C2BACA6BE00C65A91 /* GeneralViewController.swift in Sources */,
 				D3C14E6B2BACD0C900C65A91 /* NewsViewController.swift in Sources */,
+				D32FF7212BB43B0400A1461C /* GeneralViewModel.swift in Sources */,
 				D3C14E5E2BACAB5000C65A91 /* BusinessViewController.swift in Sources */,
+				D32FF7242BB4412C00A1461C /* NewsRespponseObject.swift in Sources */,
+				D32FF7292BB4450A00A1461C /* ArticleCellViewModel.swift in Sources */,
 				D3C14E482BACA6BE00C65A91 /* AppDelegate.swift in Sources */,
 				D3C14E712BB345B100C65A91 /* DetailsCollectionViewCell.swift in Sources */,
 			);

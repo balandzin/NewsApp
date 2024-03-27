@@ -20,13 +20,13 @@ final class TabBarController: UITabBarController {
     private func setupViewControllers() {
         
         viewControllers = [
-            setupViewControllers(rootViewController: GeneralViewController(), title: "General", image: UIImage(systemName: "newspaper") ?? UIImage.add),
-            setupViewControllers(rootViewController: BusinessViewController(), title: "Business", image: UIImage(systemName: "briefcase") ?? UIImage.add),
-            setupViewControllers(rootViewController: TechnologyViewController(), title: "Technology", image: UIImage(systemName: "gyroscope") ?? UIImage.add)
+            setupNavigationControllers(rootViewController: GeneralViewController(viewModel: GeneralViewModel()), title: "General", image: UIImage(systemName: "newspaper") ?? UIImage.add),
+            setupNavigationControllers(rootViewController: BusinessViewController(), title: "Business", image: UIImage(systemName: "briefcase") ?? UIImage.add),
+            setupNavigationControllers(rootViewController: TechnologyViewController(), title: "Technology", image: UIImage(systemName: "gyroscope") ?? UIImage.add)
         ]
     }
     
-    private func setupViewControllers(
+    private func setupNavigationControllers(
         rootViewController: UIViewController,
         title: String,
         image: UIImage

@@ -54,6 +54,10 @@ final class GeneralCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
+    func set(article: ArticleCellViewModel) {
+        titleLabel.text = article.title
+        
+    }
     
     // MARK: - Private Methods
     private func setupUI() {
