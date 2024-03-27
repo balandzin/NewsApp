@@ -15,6 +15,6 @@ struct ArticleCellViewModel {
     init(article: ArticleResponseObject) {
         title = article.title
         description = article.description
-        data = article.publishedAt
+        data = article.date
     }
 }

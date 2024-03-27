@@ -69,6 +69,10 @@ final class GeneralViewController: UIViewController {
         viewModel.reloadData = { [weak self] in
             self?.collectionView.reloadData()
         }
+        
+        viewModel.showError = { [weak self] error in
+            print(error)
+        }
     }
  
     // MARK: - Private Methods
