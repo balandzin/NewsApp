@@ -8,12 +8,22 @@
 import Foundation
 
 final class ApiManager {
+    enum Category: String {
+        case general = "general"
+        case business = "business"
+        case technology = "technology"
+    }
+    
+    // MARK: - Properties
     private static let apiKey = "17962c87cf2c4051a66dfb7f1c82f9bc"
     private static let baseURL = "https://newsapi.org/v2/"
-    private static let path = "everything"
+    private static let path = "top-headlines"
     
-    static func getNews(completion: @escaping (Result<[ArticleResponseObject], Error>) -> ()) {
-        let stringUrl = baseURL + path + "?sources=bbc-news&lenguage=en" + "&apiKey=" + apiKey
+    //private static let trainURL = baseURL + "everything" + "?sources=bbc-news&language=en" + "&apiKey=" + apiKey
+    
+    // MARK: - Methods
+    static func getNews(from category: Category, completion: @escaping (Result<[ArticleResponseObject], Error>) -> ()) {
+        let stringUrl = baseURL + path + "?category=\(category.rawValue)&language=en" + "&apiKey=" + apiKey
         
         guard let url = URL(string: stringUrl) else { return }
         
@@ -26,7 +36,7 @@ final class ApiManager {
     
     static func getImageData(url: String, completion: @escaping (Result<Data, Error>) -> ()) {
         guard let url = URL(string: url) else { return }
-                
+        
         let session = URLSession.shared.dataTask(with: url) { data, _, error in
             if let data {
                 completion(.success(data))
@@ -62,7 +72,6 @@ final class ApiManager {
             }
             
         }
-    
 }
 
 

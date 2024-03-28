@@ -21,13 +21,11 @@ final class NewsViewController: UIViewController {
     
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "icon")
         return view
     }()
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "21.03.2024"
         label.font = .systemFont(ofSize: 12)
         label.textColor = .darkGray
         return label
@@ -35,7 +33,6 @@ final class NewsViewController: UIViewController {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Краткое описание новости"
         label.font = .boldSystemFont(ofSize: 24)
         label.numberOfLines = 0
         return label
@@ -43,7 +40,6 @@ final class NewsViewController: UIViewController {
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "NewsApp - это инновационное мобильное приложение, которое позволяет пользователям быть в курсе последних новостей из различных источников. С помощью NewsApp вы можете получать свежие новости по различным категориям, таким как политика, экономика, спорт, наука, культура и многое другое, прямо на вашем смартфоне."
         label.font = .systemFont(ofSize: 14)
         label.textColor = .darkGray
         label.numberOfLines = 0
@@ -53,8 +49,18 @@ final class NewsViewController: UIViewController {
     
     // MARK: - Properties
     private let edgeInset = 10
+    private let viewModel: NewsViewModelProtocol
     
     // MARK: - Lifecycle
+    init(viewModel: NewsViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -72,6 +78,17 @@ final class NewsViewController: UIViewController {
         contentView.addSubview(dateLabel)
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
+        
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.description
+        dateLabel.text = viewModel.date
+        
+        if let data = viewModel.imageData, let image = UIImage(data: data) {
+            imageView.image = image
+        } else {
+            imageView.image = UIImage(named: "icon")
+        }
+        
         setupConstraints()
     }
     

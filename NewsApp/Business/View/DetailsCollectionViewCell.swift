@@ -55,7 +55,17 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
         setupConstraints()
     }
     
-    // MARK: - Private Methods
+    // MARK: - Methods
+    func set(article: ArticleCellViewModel) {
+        titleLabel.text = article.title
+        
+        if let data = article.imageData, let image = UIImage(data: data) {
+            imageView.image = image
+        } else {
+            imageView.image = UIImage(named: "icon")
+        }
+    }
+    
     private func setupConstraints() {
         imageView.snp.makeConstraints { make in
             make.width.height.equalTo(self.frame.height)

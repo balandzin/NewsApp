@@ -47,8 +47,20 @@ final class BusinessViewController: UIViewController {
     }()
     
     // MARK: - Properties
+    private var viewModel: BusinessViewModelProtocol
     
     // MARK: - Lifecycle
+    init(viewModel: BusinessViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        self.setupViewModel()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,9 +68,25 @@ final class BusinessViewController: UIViewController {
         
         collectionView.register(GeneralCollectionViewCell.self, forCellWithReuseIdentifier: "GeneralCollectionViewCell")
         collectionView.register(DetailsCollectionViewCell.self, forCellWithReuseIdentifier: "DetailsCollectionViewCell")
+        
+        viewModel.loadData()
     }
  
-    // MARK: - Private Methods
+    // MARK: - Methods
+    private func setupViewModel() {
+        viewModel.reloadData = { [weak self] in
+            self?.collectionView.reloadData()
+        }
+        
+        viewModel.reloadCell = { [weak self] row in
+            self?.collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+        }
+        
+        viewModel.showError = { [weak self] error in
+            print(error)
+        }
+    }
+     
     private func setupUI() {
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -78,40 +106,63 @@ final class BusinessViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension BusinessViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        viewModel.numberOfCells > 1 ? 2 : 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        section == 0 ? 1 : 15
+        if viewModel.numberOfCells > 1 {
+            return section == 0 ? 1 : viewModel.numberOfCells - 1
+        }
+        
+        return viewModel.numberOfCells
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var cell: UICollectionViewCell?
-        
         if indexPath.section == 0 {
-            cell = collectionView.dequeueReusableCell(
+            let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "GeneralCollectionViewCell",
-                for: indexPath) as? GeneralCollectionViewCell
+                for: indexPath
+            ) as! GeneralCollectionViewCell
+            
+            let article = viewModel.getArticle(for: 0)
+            cell.set(article: article)
+            
+            return cell
+            
         } else {
-            cell = collectionView.dequeueReusableCell(
+            let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "DetailsCollectionViewCell",
-                for: indexPath) as? DetailsCollectionViewCell
+                for: indexPath
+            ) as? DetailsCollectionViewCell
+            
+            let article = viewModel.getArticle(for: indexPath.row + 1)
+            cell?.set(article: article)
+            
+            return cell ?? UICollectionViewCell()
         }
-        
-        return cell ?? UICollectionViewCell()
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension BusinessViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(NewsViewController(), animated: true)
+        let article = viewModel.getArticle(for: indexPath.section == 0 ? 0 : indexPath.row + 1)
+        
+        
+        navigationController?.pushViewController(
+            NewsViewController(viewModel: NewsViewModel(article: article)),
+            animated: true
+        )
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension BusinessViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         
         let width = view.frame.width
         
@@ -122,7 +173,6 @@ extension BusinessViewController: UICollectionViewDelegateFlowLayout {
         let secondItemSize = CGSize(width: width, height: 100)
         
         return indexPath.section == 0 ? firstSectionItemSize : secondItemSize
-        
     }
 }
 

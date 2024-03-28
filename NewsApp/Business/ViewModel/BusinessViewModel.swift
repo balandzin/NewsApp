@@ -1,23 +1,24 @@
 //
-//  GeneralViewModel.swift
+//  BusinessViewModel.swift
 //  NewsApp
 //
-//  Created by Антон Баландин on 27.03.24.
+//  Created by Антон Баландин on 28.03.24.
 //
 
 import Foundation
 
-protocol GeneralViewModelProtocol {
+protocol BusinessViewModelProtocol {
     var reloadData: (() -> Void)? { get set }
     var showError: ((String) -> Void)? { get set }
     var reloadCell: ((Int) -> Void)? { get set }
     
     var numberOfCells: Int { get }
     
+    func loadData()
     func getArticle(for row: Int) -> ArticleCellViewModel
 }
 
-final class GeneralViewModel: GeneralViewModelProtocol {
+final class BusinessViewModel: BusinessViewModelProtocol {
     var reloadData: (() -> Void)?
     var showError: ((String) -> Void)?
     var reloadCell: ((Int) -> Void)?
@@ -26,6 +27,7 @@ final class GeneralViewModel: GeneralViewModelProtocol {
     var numberOfCells: Int {
         articles.count
     }
+    
     private var articles: [ArticleCellViewModel] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -34,17 +36,14 @@ final class GeneralViewModel: GeneralViewModelProtocol {
         }
     }
     
-    init() {
-        loadData()
-    }
-    
     func getArticle(for row: Int) -> ArticleCellViewModel {
         return articles[row]
     }
     
-    private func loadData() {
-        ApiManager.getNews(from: .general) { [weak self] result in
+    func loadData() {
+        ApiManager.getNews(from: .business) { [weak self] result in
             guard let self = self else { return }
+            
             switch result {
             case .success(let articles):
                 self.articles = self.convertToCellViewModel(articles)
@@ -75,6 +74,9 @@ final class GeneralViewModel: GeneralViewModelProtocol {
                 }
             }
         }
+
+        
+        
     }
     
     private func convertToCellViewModel(_ articles: [ArticleResponseObject]) -> [ArticleCellViewModel] {
