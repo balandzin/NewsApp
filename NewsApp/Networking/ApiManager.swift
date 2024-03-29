@@ -19,13 +19,13 @@ final class ApiManager {
     private static let baseURL = "https://newsapi.org/v2/"
     private static let path = "top-headlines"
     
-    private static let trainURL = baseURL + "everything" + "?sources=bbc-news&language=en" + "&apiKey=" + apiKey // С ЭТОЙ ССЫЛКОИ РАБОТАЕТ
+    //private static let trainURL = baseURL + "everything" + "?sources=bbc-news&language=en" + "&apiKey=" + apiKey // С ЭТОЙ ССЫЛКОИ РАБОТАЕТ
     
     // MARK: - Methods
     static func getNews(from category: Category, completion: @escaping (Result<[ArticleResponseObject], Error>) -> ()) {
         let stringUrl = baseURL + path + "?category=\(category.rawValue)&language=en" + "&apiKey=" + apiKey // С ЭТОЙ ССЫЛКОЙ НЕ РАБОТАЕТ
         
-        guard let url = URL(string: trainURL) else { return }
+        guard let url = URL(string: stringUrl) else { return }
         
         let session = URLSession.shared.dataTask(with: url) { data, _, error in
             handleResponse(data: data, error: error, completion: completion)

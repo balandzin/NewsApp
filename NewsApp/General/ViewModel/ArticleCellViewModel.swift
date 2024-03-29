@@ -15,9 +15,9 @@ struct ArticleCellViewModel {
     var imageData: Data?
     
     init(article: ArticleResponseObject) {
-        title = article.title
-        description = article.description
-        data = article.date
-        imageUrl = article.urlToImage
+        title = article.title ?? ""
+        description = article.description ?? ""
+        data = article.date ?? ""
+        imageUrl = article.urlToImage ?? ""
     }
 }
