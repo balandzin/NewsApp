@@ -47,10 +47,10 @@ final class BusinessViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    private var viewModel: BusinessViewModelProtocol
+    private var viewModel: NewsListViewModelProtocol
     
     // MARK: - Lifecycle
-    init(viewModel: BusinessViewModelProtocol) {
+    init(viewModel: NewsListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.setupViewModel()

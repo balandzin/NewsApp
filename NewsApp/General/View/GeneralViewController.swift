@@ -42,10 +42,10 @@ final class GeneralViewController: UIViewController {
     }()
     
     // MARK: - Properties
-    private var viewModel: GeneralViewModelProtocol
+    private var viewModel: NewsListViewModelProtocol
     
     // MARK: - Lifecycle
-    init(viewModel: GeneralViewModelProtocol) {
+    init(viewModel: NewsListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.setupViewModel()
@@ -62,6 +62,8 @@ final class GeneralViewController: UIViewController {
         setupUI()
         
         collectionView.register(GeneralCollectionViewCell.self, forCellWithReuseIdentifier: "GeneralCollectionViewCell")
+        
+        viewModel.loadData()
     }
     
     // MARK: - Methods
@@ -70,8 +72,8 @@ final class GeneralViewController: UIViewController {
             self?.collectionView.reloadData()
         }
         
-        viewModel.reloadCell = { [weak self] row in
-            self?.collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+        viewModel.reloadCell = { [weak self] indexPath in
+            self?.collectionView.reloadItems(at: [indexPath])
         }
         
         viewModel.showError = { [weak self] error in
@@ -102,17 +104,21 @@ final class GeneralViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource
 extension GeneralViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        viewModel.sections.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.numberOfCells
+        viewModel.sections[section].items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
+        
+        guard let article = viewModel.sections[indexPath.section].items[indexPath.row] as? ArticleCellViewModel, let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "GeneralCollectionViewCell",
             for: indexPath
         ) as? GeneralCollectionViewCell else { return UICollectionViewCell() }
         
-        let article = viewModel.getArticle(for: indexPath.row)
         cell.set(article: article)
         
         return cell
@@ -123,7 +129,21 @@ extension GeneralViewController: UICollectionViewDataSource {
 extension GeneralViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let article = viewModel.getArticle(for: indexPath.row)
-        navigationController?.pushViewController(NewsViewController(viewModel: NewsViewModel(article: article)), animated: true)
+        guard let article = viewModel.sections[indexPath.section].items[indexPath.row] as? ArticleCellViewModel else { return }
+        
+        navigationController?.pushViewController(
+            NewsViewController(viewModel: NewsViewModel(article: article)),
+            animated: true
+        )
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+        if indexPath.row == (viewModel.sections[0].items.count - 15) {
+            viewModel.loadData()
+        }
     }
 }
