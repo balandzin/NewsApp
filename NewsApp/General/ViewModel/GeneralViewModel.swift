@@ -62,7 +62,8 @@ final class GeneralViewModel: GeneralViewModelProtocol {
         //        guard let url = URL(string: articles[row].imageUrl), let data = try? Data(contentsOf: url) else { return }
         
         for (index, article) in articles.enumerated() {
-            ApiManager.getImageData(url: article.imageUrl) { [weak self] result in
+            guard let url = article.imageUrl else { return }
+            ApiManager.getImageData(url: url) { [weak self] result in
                 DispatchQueue.main.async {
                     
                     switch result {

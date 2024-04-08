@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ArticleCellViewModel {
+final class ArticleCellViewModel: TableCollectionViewItemsProtocol {
     let title: String
     let description: String
     let data: String
-    let imageUrl: String
+    let imageUrl: String?
     var imageData: Data?
     
     init(article: ArticleResponseObject) {

@@ -10,34 +10,24 @@ import Foundation
 protocol BusinessViewModelProtocol {
     var reloadData: (() -> Void)? { get set }
     var showError: ((String) -> Void)? { get set }
-    var reloadCell: ((Int) -> Void)? { get set }
-    
-    var numberOfCells: Int { get }
+    var reloadCell: ((IndexPath) -> Void)? { get set }
+    var articles: [TableCollectionViewSection] { get }
     
     func loadData()
-    func getArticle(for row: Int) -> ArticleCellViewModel
 }
 
 final class BusinessViewModel: BusinessViewModelProtocol {
     var reloadData: (() -> Void)?
     var showError: ((String) -> Void)?
-    var reloadCell: ((Int) -> Void)?
+    var reloadCell: ((IndexPath) -> Void)?
     
     // MARK: - Properties
-    var numberOfCells: Int {
-        articles.count
-    }
-    
-    private var articles: [ArticleCellViewModel] = [] {
+    private(set) var articles: [TableCollectionViewSection] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.reloadData?()
             }
         }
-    }
-    
-    func getArticle(for row: Int) -> ArticleCellViewModel {
-        return articles[row]
     }
     
     func loadData() {
@@ -46,9 +36,9 @@ final class BusinessViewModel: BusinessViewModelProtocol {
             
             switch result {
             case .success(let articles):
-                self.articles = self.convertToCellViewModel(articles)
+                self.convertToCellViewModel(articles)
                 self.loadImage()
-
+                
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showError?(error.localizedDescription)
@@ -60,32 +50,49 @@ final class BusinessViewModel: BusinessViewModelProtocol {
     private func loadImage() {
         //        guard let url = URL(string: articles[row].imageUrl), let data = try? Data(contentsOf: url) else { return }
         
-        for (index, article) in articles.enumerated() {
-            ApiManager.getImageData(url: article.imageUrl) { [weak self] result in
-                DispatchQueue.main.async {
-                    
-                    switch result {
-                    case .success(let data):
-                        self?.articles[index].imageData = data
-                        self?.reloadCell?(index)
-                    case .failure(let error):
-                        self?.showError?(error.localizedDescription)
+        for (i, section) in articles.enumerated() {
+            for (index, item) in section.items.enumerated() {
+                if let article = item as? ArticleCellViewModel, let url = article.imageUrl {
+                    ApiManager.getImageData(url: url) { [weak self] result in
+                        DispatchQueue.main.async {
+                            
+                            switch result {
+                            case .success(let data):
+                                if let article = self?.articles[i].items[index] as? ArticleCellViewModel {
+                                    article.imageData = data
+                                }
+                                self?.reloadCell?(IndexPath(row: index, section: i))
+                            case .failure(let error):
+                                self?.showError?(error.localizedDescription)
+                            }
+                        }
                     }
                 }
             }
         }
-
-        
-        
     }
     
-    private func convertToCellViewModel(_ articles: [ArticleResponseObject]) -> [ArticleCellViewModel] {
-        return articles.map { ArticleCellViewModel(article: $0) }
+    private func convertToCellViewModel(_ articles: [ArticleResponseObject]) {
+        var viewModels = articles.map { ArticleCellViewModel(article: $0) }
+        
+        let firstSection = TableCollectionViewSection(items: [viewModels.removeFirst()])
+        let secondSection = TableCollectionViewSection(items: viewModels)
+        
+        self.articles = [firstSection, secondSection]
     }
     
     private func setupMockObjects() {
         articles = [
-            ArticleCellViewModel(article: ArticleResponseObject(title: "First object", description: "First description", urlToImage: "", date: "27.03.2024"))
+            TableCollectionViewSection(
+                items: [ArticleCellViewModel(
+                    article: ArticleResponseObject(
+                        title: "First object",
+                        description: "First description",
+                        urlToImage: "",
+                        date: "27.03.2024"
+                    )
+                )]
+            )
         ]
     }
 }

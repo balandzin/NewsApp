@@ -22,8 +22,7 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .black
-        label.text = "Title here"
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         
         return label
     }()
@@ -32,8 +31,7 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .gray
-        label.text = "Description"
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
     
@@ -58,6 +56,7 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
     // MARK: - Methods
     func set(article: ArticleCellViewModel) {
         titleLabel.text = article.title
+        descriptionLabel.text = article.description
         
         if let data = article.imageData, let image = UIImage(data: data) {
             imageView.image = image

@@ -78,8 +78,8 @@ final class BusinessViewController: UIViewController {
             self?.collectionView.reloadData()
         }
         
-        viewModel.reloadCell = { [weak self] row in
-            self?.collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+        viewModel.reloadCell = { [weak self] indexPath in
+            self?.collectionView.reloadItems(at: [indexPath])
         }
         
         viewModel.showError = { [weak self] error in
@@ -106,25 +106,22 @@ final class BusinessViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension BusinessViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        viewModel.numberOfCells > 1 ? 2 : 1
+        viewModel.articles.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if viewModel.numberOfCells > 1 {
-            return section == 0 ? 1 : viewModel.numberOfCells - 1
-        }
-        
-        return viewModel.numberOfCells
+        viewModel.articles[section].items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        guard let article = viewModel.articles[indexPath.section].items[indexPath.row] as? ArticleCellViewModel else { return UICollectionViewCell() }
+
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "GeneralCollectionViewCell",
                 for: indexPath
             ) as! GeneralCollectionViewCell
             
-            let article = viewModel.getArticle(for: 0)
             cell.set(article: article)
             
             return cell
@@ -135,7 +132,6 @@ extension BusinessViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? DetailsCollectionViewCell
             
-            let article = viewModel.getArticle(for: indexPath.row + 1)
             cell?.set(article: article)
             
             return cell ?? UICollectionViewCell()
@@ -146,8 +142,7 @@ extension BusinessViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension BusinessViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let article = viewModel.getArticle(for: indexPath.section == 0 ? 0 : indexPath.row + 1)
-        
+        guard let article = viewModel.articles[indexPath.section].items[indexPath.row] as? ArticleCellViewModel else { return }
         
         navigationController?.pushViewController(
             NewsViewController(viewModel: NewsViewModel(article: article)),
