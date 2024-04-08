@@ -121,6 +121,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D37C951E2BC4224600739878 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D37C951C2BC41E9E00739878 /* TechnologyViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D37C951F2BC4225300739878 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3C14E5F2BACAB7E00C65A91 /* TechnologyViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D3C14E3B2BACA6BE00C65A91 = {
 			isa = PBXGroup;
 			children = (
@@ -177,8 +193,8 @@
 		D3C14E662BACC77000C65A91 /* Technology */ = {
 			isa = PBXGroup;
 			children = (
-				D3C14E5F2BACAB7E00C65A91 /* TechnologyViewController.swift */,
-				D37C951C2BC41E9E00739878 /* TechnologyViewModel.swift */,
+				D37C951F2BC4225300739878 /* View */,
+				D37C951E2BC4224600739878 /* ViewModel */,
 			);
 			path = Technology;
 			sourceTree = "<group>";
