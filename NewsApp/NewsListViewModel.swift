@@ -13,7 +13,7 @@ protocol NewsListViewModelProtocol {
     var reloadCell: ((IndexPath) -> Void)? { get set }
     var sections: [TableCollectionViewSection] { get }
     
-    func loadData()
+    func loadData(searchText: String?)
 }
 
 class NewsListViewModel: NewsListViewModelProtocol {
@@ -31,10 +31,20 @@ class NewsListViewModel: NewsListViewModelProtocol {
     }
     
     var page = 0
+    var searchText: String? = nil
+    private var isSearchTextChanged = false
     
     // MARK: - Methods
-    func loadData() {
-        page += 1
+    func loadData(searchText: String? = nil) {
+        if self.searchText != searchText {
+            page = 1
+            isSearchTextChanged = true
+        } else {
+            page += 1
+            isSearchTextChanged = false
+        }
+        
+        self.searchText = searchText
     }
     
     func handleResult(_  result: Result<[ArticleResponseObject], Error>) {
@@ -77,8 +87,8 @@ class NewsListViewModel: NewsListViewModelProtocol {
     
     func convertToCellViewModel(_ articles: [ArticleResponseObject]) {
         let viewModels = articles.map { ArticleCellViewModel(article: $0) }
-
-        if sections.isEmpty {
+        
+        if sections.isEmpty || isSearchTextChanged {
             let firstSection = TableCollectionViewSection(items: viewModels)
             sections = [firstSection]
         } else {
