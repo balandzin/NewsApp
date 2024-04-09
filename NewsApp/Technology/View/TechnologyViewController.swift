@@ -62,7 +62,7 @@ final class TechnologyViewController: UIViewController {
         collectionView.register(GeneralCollectionViewCell.self, forCellWithReuseIdentifier: "GeneralCollectionViewCell")
         collectionView.register(DetailsCollectionViewCell.self, forCellWithReuseIdentifier: "DetailsCollectionViewCell")
         
-        viewModel.loadData()
+        viewModel.loadData(searchText: nil)
     }
  
     // MARK: - Methods
@@ -152,7 +152,7 @@ extension TechnologyViewController: UICollectionViewDelegate {
         forItemAt indexPath: IndexPath
     ) {
         if indexPath.row == (viewModel.sections[1].items.count - 15) {
-            viewModel.loadData()
+            viewModel.loadData(searchText: nil)
         }
     }
 }

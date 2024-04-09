@@ -20,8 +20,14 @@ final class ApiManager {
     private static let path = "top-headlines"
     
     // MARK: - Methods
-    static func getNews(from category: Category, page: Int, completion: @escaping (Result<[ArticleResponseObject], Error>) -> ()) {
-        let stringUrl = baseURL + path + "?category=\(category.rawValue)&language=en&page=\(page)" + "&apiKey=" + apiKey
+    static func getNews(from category: Category, page: Int, searchText: String?, completion: @escaping (Result<[ArticleResponseObject], Error>) -> ()) {
+        
+        var searchParameter: String = ""
+        if let searchText {
+            searchParameter = "&q=\(searchText)"
+        }
+        
+        let stringUrl = baseURL + path + "?category=\(category.rawValue)&language=en&page=\(page)" + searchParameter + "&apiKey=" + apiKey
         
         guard let url = URL(string: stringUrl) else { return }
         

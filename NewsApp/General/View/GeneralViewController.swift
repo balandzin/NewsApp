@@ -14,6 +14,8 @@ final class GeneralViewController: UIViewController {
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchBar.delegate = self
         return searchBar
     }()
     
@@ -63,7 +65,10 @@ final class GeneralViewController: UIViewController {
         
         collectionView.register(GeneralCollectionViewCell.self, forCellWithReuseIdentifier: "GeneralCollectionViewCell")
         
-        viewModel.loadData()
+        viewModel.loadData(searchText: nil)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - Methods
@@ -100,6 +105,11 @@ final class GeneralViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
+    
+    // MARK: - Methods
+    @objc func dismissKeyboard() {
+            view.endEditing(true)
+        }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -143,7 +153,26 @@ extension GeneralViewController: UICollectionViewDelegate {
         forItemAt indexPath: IndexPath
     ) {
         if indexPath.row == (viewModel.sections[0].items.count - 15) {
-            viewModel.loadData()
+            viewModel.loadData(searchText: searchBar.text)
+        }
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension GeneralViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+        
+        viewModel.loadData(searchText: text)
+        
+        searchBar.searchTextField.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            viewModel.loadData(searchText: nil)
+            
+            searchBar.searchTextField.resignFirstResponder()
         }
     }
 }
