@@ -11,7 +11,6 @@
 		D32FF7242BB4412C00A1461C /* NewsRespponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7232BB4412C00A1461C /* NewsRespponseObject.swift */; };
 		D32FF7262BB441EF00A1461C /* ArticleResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7252BB441EF00A1461C /* ArticleResponseObject.swift */; };
 		D32FF7292BB4450A00A1461C /* ArticleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7282BB4450A00A1461C /* ArticleCellViewModel.swift */; };
-		D32FF72C2BB4523300A1461C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D32FF72B2BB4523300A1461C /* SnapKit */; };
 		D32FF72E2BB4906A00A1461C /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF72D2BB4906A00A1461C /* ApiManager.swift */; };
 		D32FF7312BB4970A00A1461C /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7302BB4970A00A1461C /* NetworkingError.swift */; };
 		D32FF7342BB4B94C00A1461C /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FF7332BB4B94C00A1461C /* NewsViewModel.swift */; };
@@ -19,6 +18,7 @@
 		D37C95192BC3CD0E00739878 /* TableCollectionViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C95182BC3CD0E00739878 /* TableCollectionViewSection.swift */; };
 		D37C951B2BC40E2D00739878 /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C951A2BC40E2D00739878 /* NewsListViewModel.swift */; };
 		D37C951D2BC41E9E00739878 /* TechnologyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C951C2BC41E9E00739878 /* TechnologyViewModel.swift */; };
+		D37C95222BC55C1900739878 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D37C95212BC55C1900739878 /* SnapKit */; };
 		D3C14E482BACA6BE00C65A91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E472BACA6BE00C65A91 /* AppDelegate.swift */; };
 		D3C14E4C2BACA6BE00C65A91 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C14E4B2BACA6BE00C65A91 /* GeneralViewController.swift */; };
 		D3C14E512BACA6CA00C65A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3C14E502BACA6CA00C65A91 /* Assets.xcassets */; };
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D32FF72C2BB4523300A1461C /* SnapKit in Frameworks */,
+				D37C95222BC55C1900739878 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +235,7 @@
 			);
 			name = NewsApp;
 			packageProductDependencies = (
-				D32FF72B2BB4523300A1461C /* SnapKit */,
+				D37C95212BC55C1900739878 /* SnapKit */,
 			);
 			productName = NewsApp;
 			productReference = D3C14E442BACA6BE00C65A91 /* NewsApp.app */;
@@ -266,7 +266,7 @@
 			);
 			mainGroup = D3C14E3B2BACA6BE00C65A91;
 			packageReferences = (
-				D32FF72A2BB4523300A1461C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D37C95202BC55C1900739878 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = D3C14E452BACA6BE00C65A91 /* Products */;
 			projectDirPath = "";
@@ -533,7 +533,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D32FF72A2BB4523300A1461C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		D37C95202BC55C1900739878 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -544,9 +544,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D32FF72B2BB4523300A1461C /* SnapKit */ = {
+		D37C95212BC55C1900739878 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D32FF72A2BB4523300A1461C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = D37C95202BC55C1900739878 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
