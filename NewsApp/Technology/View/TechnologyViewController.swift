@@ -14,7 +14,7 @@ final class TechnologyViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-
+        
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         layout.sectionInset = UIEdgeInsets(
@@ -23,7 +23,7 @@ final class TechnologyViewController: UIViewController {
             bottom: 20,
             right: 20
         )
-
+        
         let collectionView = UICollectionView(
             frame: CGRect(
                 x: 0,
@@ -64,7 +64,7 @@ final class TechnologyViewController: UIViewController {
         
         viewModel.loadData(searchText: nil)
     }
- 
+    
     // MARK: - Methods
     private func setupViewModel() {
         viewModel.reloadData = { [weak self] in
@@ -79,7 +79,7 @@ final class TechnologyViewController: UIViewController {
             print(error)
         }
     }
-     
+    
     private func setupUI() {
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -108,7 +108,7 @@ extension TechnologyViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let article = viewModel.sections[indexPath.section].items[indexPath.row] as? ArticleCellViewModel else { return UICollectionViewCell() }
-
+        
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "GeneralCollectionViewCell",

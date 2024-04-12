@@ -85,7 +85,7 @@ final class GeneralViewController: UIViewController {
             print(error)
         }
     }
- 
+    
     // MARK: - Private Methods
     private func setupUI() {
         view.backgroundColor = .white
@@ -108,8 +108,8 @@ final class GeneralViewController: UIViewController {
     
     // MARK: - Methods
     @objc func dismissKeyboard() {
-            view.endEditing(true)
-        }
+        view.endEditing(true)
+    }
 }
 
 // MARK: - UICollectionViewDataSource

@@ -21,7 +21,7 @@ final class BusinessViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-
+        
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         layout.sectionInset = UIEdgeInsets(
@@ -30,7 +30,7 @@ final class BusinessViewController: UIViewController {
             bottom: 20,
             right: 20
         )
-
+        
         let collectionView = UICollectionView(
             frame: CGRect(
                 x: 0,
@@ -71,7 +71,7 @@ final class BusinessViewController: UIViewController {
         
         viewModel.loadData(searchText: nil)
     }
- 
+    
     // MARK: - Methods
     private func setupViewModel() {
         viewModel.reloadData = { [weak self] in
@@ -86,7 +86,7 @@ final class BusinessViewController: UIViewController {
             print(error)
         }
     }
-     
+    
     private func setupUI() {
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -115,7 +115,7 @@ extension BusinessViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let article = viewModel.sections[indexPath.section].items[indexPath.row] as? ArticleCellViewModel else { return UICollectionViewCell() }
-
+        
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "GeneralCollectionViewCell",
